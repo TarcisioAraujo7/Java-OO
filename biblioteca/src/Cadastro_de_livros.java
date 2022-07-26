@@ -9,7 +9,7 @@ public class Cadastro_de_livros {
         Livro livro1 = new Livro();
         livro1.nome = "O instituto";
         livro1.descricao = "Livro de suspense";
-        livro1.valor = 50;
+        livro1.addValor(50);
         livro1.isbn = "978-10-82198-11-9";
         livro1.autor = autor1;
 
@@ -18,7 +18,7 @@ public class Cadastro_de_livros {
         Livro livro2 = new Livro();
         livro2.nome = "It a coisa";
         livro2.descricao = "Livro de terror";
-        livro2.valor = 42.50;
+        livro2.addValor(44.50);
         livro2.isbn = "124-42-15232-13-6";
         livro2.autor = autor1;
 
