@@ -18,6 +18,12 @@ public class Livro {
         System.out.println("-----------------------------");
     }
 
+    public Livro(Autor autor){
+        this.autor = autor;
+        this.descricao = "Descricao vazia";
+        this.isbn = "000-00-00000-00-0";
+    }
+
     void aplicaDesconto(Double porcentagem) {
         if (porcentagem > 0.3){
             System.out.println("O desconto não pode passar de 30%");
