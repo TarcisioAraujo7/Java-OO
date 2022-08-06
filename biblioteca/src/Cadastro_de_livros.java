@@ -21,6 +21,24 @@ public class Cadastro_de_livros {
         livro2.setCodigo("124-42-15232-13-6");
 
         livro2.mostrarDados();
+        livro2.aplicaDesconto(0.12);
+        livro2.mostrarDados();
+
+        Autor autor2 = new Autor();
+        autor2.setNome("Rafael Lange");
+        autor2.setEmail("cllbt@email.com");
+        autor2.setIdade(29);
+
+        Ebook ebook1 = new Ebook(autor2);
+        ebook1.setNome("Ordem Paranormal, o comeco");
+        ebook1.setDescricao("Terror e medo");
+        ebook1.setValor(100);
+        ebook1.setCodigo("193-15-51374-64-8");
+        ebook1.setWaterMark("Cellbit");
+
+        ebook1.aplicaDesconto(0.32);
+
+        ebook1.mostrarDados();
 
     }
 }
