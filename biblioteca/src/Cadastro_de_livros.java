@@ -6,7 +6,7 @@ public class Cadastro_de_livros {
         autor1.setEmail("StKing@yahoo.com");
         autor1.setIdade(74);
 
-        Livro livro1 = new Livro(autor1);
+        Livro livro1 = new LivroFisico(autor1);
         livro1.setNome("O instituto");
         livro1.setDescricao("Livro de suspense");
         livro1.setValor(50);
@@ -14,7 +14,7 @@ public class Cadastro_de_livros {
 
         livro1.mostrarDados();
 
-        Livro livro2 = new Livro(autor1);
+        Livro livro2 = new LivroFisico(autor1);
         livro2.setNome ("It a coisa");
         livro2.setDescricao("Livro de terror");
         livro2.setValor(44.50);
@@ -40,5 +40,8 @@ public class Cadastro_de_livros {
 
         ebook1.mostrarDados();
 
+        CarrinhoCompras carrinho1 = new CarrinhoCompras();
+        carrinho1.addLivro(ebook1);
+        
     }
 }
