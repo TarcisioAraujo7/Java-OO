@@ -15,6 +15,7 @@ public class Registro {
 
         System.out.println("Insira o preco do livro: ");
         livro.setValor(scan.nextDouble());
+        scan.nextLine();
 
         System.out.println("Insira o codigo do livro: ");
         livro.setCodigo(scan.nextLine());
