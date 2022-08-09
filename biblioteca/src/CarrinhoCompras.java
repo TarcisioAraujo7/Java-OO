@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarrinhoCompras{
-
-    List<Livro> carrinho;
+    
+    List<Livro> carrinho = new ArrayList<Livro>();
 
     public void addLivro(Livro livro){
         carrinho.add(livro);
