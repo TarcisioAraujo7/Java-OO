@@ -25,9 +25,9 @@ public class Email {
 
     public void imprimir(){
 
-        System.out.println( "De:" + de);
-        System.out.println( "Para:" + para);
-        System.out.println( "Mensagem:" + mensagem);
+        System.out.println( "De: " + de);
+        System.out.println( "Para: " + para);
+        System.out.println( "Mensagem: " + mensagem);
         System.out.println( "--------------");
         
     }
