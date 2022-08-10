@@ -7,6 +7,12 @@ public class Registro {
     List<Livro> servidor_livros = new ArrayList<Livro>();
     List<Autor> servidor_autores = new ArrayList<Autor>();
 
+    public Livro getLivro(String nome){
+        Integer comprimento_lista = servidor_livros.size();
+        for(i = 0, i != comprimento_lista, i++){
+            
+        }
+    }
 
     public void novoLivro(Livro livro, Scanner sc){
 

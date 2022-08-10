@@ -28,10 +28,12 @@ public class Cadastro_de_livros {
                                    "[2] Ebook.");
                 Integer escolha = scan.nextInt();
                 scan.nextLine();
+
                 if(escolha == 1){
                     System.out.println("Insira o nome do autor do livro:");
                     String nome_autor = scan.nextLine();    
                     reg.novoLivro(new LivroFisico(new Autor(nome_autor)), scan);   //dar um jeito de ver se ja tem um autor desses
+
                 } if (escolha == 2) {
                     System.out.println("Insira o nome do autor do ebook:");
                     String nome_autor = scan.nextLine();
@@ -40,10 +42,16 @@ public class Cadastro_de_livros {
                     System.out.println("Insira um valor valido!");
                     continue;
                 }
+
             } else if (opcao == 2) {
-                System.out.println("Insira o nome do autor");
+                System.out.println("Insira o nome do autor:");
                 String nome_autor = scan.nextLine();
                 reg.novoAutor(new Autor(nome_autor), scan);
+
+            } else if (opcao == 3){
+                System.out.println("Insira o nome do livro que voce deseja consultar:");
+                String nome_consultado = scan.nextLine();
+                
             }
         }
         scan.close();
