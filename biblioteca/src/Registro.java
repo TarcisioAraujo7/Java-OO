@@ -8,10 +8,19 @@ public class Registro {
     List<Autor> servidor_autores = new ArrayList<Autor>();
 
     public Livro getLivro(String nome){
+
         Integer comprimento_lista = servidor_livros.size();
-        for(i = 0, i != comprimento_lista, i++){
-            
+        Livro livroX;
+        livroX = null;
+        for(Integer i = 0; i != comprimento_lista; i++){
+            Livro livroAtual = servidor_livros.get(i);
+    
+            if(livroAtual.getNome() == nome){
+                livroX = livroAtual;
+            }
+
         }
+        return livroX;
     }
 
     public void novoLivro(Livro livro, Scanner sc){

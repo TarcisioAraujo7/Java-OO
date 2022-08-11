@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Livro {
 
@@ -20,26 +19,6 @@ public class Livro {
         System.out.println("-----------------------------");
     }
 
-    public void addDados(){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("-----------------------------");
-        System.out.println("Adicionando novo livro");
-
-        System.out.println("Insira o nome do livro: ");
-        nome = scan.nextLine();
-
-        System.out.println("Insira a descricao do livro: ");
-        descricao = scan.nextLine();
-
-        System.out.println("Insira o preco do livro: ");
-        valor = scan.nextDouble();
-        scan.nextLine();
-
-        System.out.println("Insira o codigo do livro: ");
-        isbn = scan.nextLine();
-        System.out.println("-----------------------------");
-        scan.close();
-    }
 
     public Livro(Autor autor){
         this.autor = autor;

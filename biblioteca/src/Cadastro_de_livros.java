@@ -38,7 +38,7 @@ public class Cadastro_de_livros {
                     System.out.println("Insira o nome do autor do ebook:");
                     String nome_autor = scan.nextLine();
                     reg.novoLivro(new Ebook(new Autor(nome_autor)), scan);
-                } else{
+                }else {
                     System.out.println("Insira um valor valido!");
                     continue;
                 }
@@ -50,7 +50,11 @@ public class Cadastro_de_livros {
 
             } else if (opcao == 3){
                 System.out.println("Insira o nome do livro que voce deseja consultar:");
+                scan.nextLine();
                 String nome_consultado = scan.nextLine();
+            
+                reg.getLivro(nome_consultado).mostrarDados();
+                
                 
             }
         }
