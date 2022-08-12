@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Iterator;
 
 public class Registro {
 
@@ -9,18 +10,15 @@ public class Registro {
 
     public Livro getLivro(String nome){
 
-        Integer comprimento_lista = servidor_livros.size();
-        Livro livroX;
-        livroX = null;
-        for(Integer i = 0; i != comprimento_lista; i++){
-            Livro livroAtual = servidor_livros.get(i);
-    
-            if(livroAtual.getNome() == nome){
-                livroX = livroAtual;
+        Iterator<Livro> it = servidor_livros.iterator();
+         while ( it.hasNext()) {
+            Livro livro = it.next();
+            if ( livro.getNome().equals( nome )) {
+                
+                return livro;
             }
-
-        }
-        return livroX;
+         }
+         return null;
     }
 
     public void novoLivro(Livro livro, Scanner sc){

@@ -45,6 +45,8 @@ public class Principal {
         // cliente5
         cliente5.enviarEmail("cliente1", "mensagem do cliente 5 para o cliente1");
         
+        cliente2.imprimirSeguinteEmail();
+
         cliente1.mostrarEmails();
         cliente2.mostrarEmails();
         cliente3.mostrarEmails();
