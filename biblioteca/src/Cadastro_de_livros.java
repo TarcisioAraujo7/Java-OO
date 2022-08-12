@@ -21,44 +21,75 @@ public class Cadastro_de_livros {
             
             opcao = scan.nextInt();
 
-            if (opcao == 1) {
+            switch(opcao) {
+                case 1:
+                    System.out.println("Voce deseja adicionar um:");
+                    System.out.println("[1] Livro fisico.\n" +
+                                       "[2] Ebook.");
+                    Integer escolha = scan.nextInt();
+                    scan.nextLine();
 
-                System.out.println("Voce deseja adicionar um:");
-                System.out.println("[1] Livro fisico.\n" +
-                                   "[2] Ebook.");
-                Integer escolha = scan.nextInt();
-                scan.nextLine();
-
-                if(escolha == 1){
                     System.out.println("Insira o nome do autor do livro:");
-                    String nome_autor = scan.nextLine();    
-                    reg.novoLivro(new LivroFisico(new Autor(nome_autor)), scan);   //dar um jeito de ver se ja tem um autor desses
-
-                } if (escolha == 2) {
-                    System.out.println("Insira o nome do autor do ebook:");
                     String nome_autor = scan.nextLine();
-                    reg.novoLivro(new Ebook(new Autor(nome_autor)), scan);
-                } else {
-                    System.out.println("Insira um valor valido!");
-                    continue;
-                }
 
-            } else if (opcao == 2) {
-                System.out.println("Insira o nome do autor:");
-                String nome_autor = scan.nextLine();
-                reg.novoAutor(new Autor(nome_autor), scan);
+                    if(reg.temAutor(nome_autor)){
+                        
+                        Autor autor_existente = reg.getAutor(nome_autor);
 
-            } else if (opcao == 3){
+                        if(escolha == 1){
+                        reg.novoLivro(new LivroFisico(autor_existente), scan);   //dar um jeito de ver se ja tem um autor desses
 
-                System.out.println("Insira o nome do livro que voce deseja consultar:");
-                scan.nextLine();
-                String nome_consultado = scan.nextLine();
-            
-                reg.getLivro(nome_consultado).mostrarDados();
+                        } else if (escolha == 2) {
+                        reg.novoLivro(new Ebook(autor_existente), scan);
+
+                        } else {
+                        System.out.println("Insira um valor valido!");
+                        continue; }
+
+                    } else {
+
+                        if(escolha == 1){
+                        reg.novoLivro(new LivroFisico(new Autor(nome_autor)), scan);   //dar um jeito de ver se ja tem um autor desses
+
+                        } else if (escolha == 2) {
+                        reg.novoLivro(new Ebook(new Autor(nome_autor)), scan);
+        
+                        } else {
+                        System.out.println("Insira um valor valido!");
+                        continue;}
+                    }
+                case 2:
+                    System.out.println("Insira o nome do autor:");
+                    String nome_autor2 = scan.nextLine();
+                    reg.novoAutor(new Autor(nome_autor2), scan);
+
+                case 3:
+                    System.out.println("Insira o nome do livro que voce deseja consultar:");
+                    scan.nextLine();
+                    String nome_consultado = scan.nextLine();
                 
+                    if (reg.getLivro(nome_consultado) != null) {
+                        reg.getLivro(nome_consultado).mostrarDados();
+                    } else{
+                        System.out.println("Livro nao consta no sistema.");
+                    }
                 
+                case 4:
+                    System.out.println("Insira o nome do autor:");
+                    scan.nextLine();
+                    String nome_autor3 = scan.nextLine();
+
+                    if (reg.getAutor(nome_autor3) != null) {
+                        reg.getAutor(nome_autor3).mostrarAutor();
+                    } else{
+                        System.out.println("Autor nao consta no sistema.");
+                    }
+                
+
+
             }
-        }
+           
         scan.close();
+    }
     }
 }

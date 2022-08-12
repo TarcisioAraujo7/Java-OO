@@ -13,7 +13,6 @@ public class Autor {
 		System.out.println("Nome: " + nome);
 		System.out.println("Idade: " + idade);
 		System.out.println("Email: " + email);
-		System.out.println("-----------------------------");
 	}
 
 	String getNome(){

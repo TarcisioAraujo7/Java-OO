@@ -21,7 +21,29 @@ public class Registro {
          return null;
     }
 
+    public Autor getAutor(String nome){
+
+        Iterator<Autor> it = servidor_autores.iterator();
+         while ( it.hasNext()) {
+            Autor autor = it.next();
+            if ( autor.getNome().equals( nome )) {
+                
+                return autor;
+            }
+         }
+         return null;
+    }
+
+    public Boolean temAutor(String nome){
+        if(getAutor(nome) != null){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public void novoLivro(Livro livro, Scanner sc){
+        
 
         servidor_livros.add(livro);
         
