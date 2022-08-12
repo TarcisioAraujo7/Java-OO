@@ -8,7 +8,7 @@ public class Cadastro_de_livros {
         int opcao = 1;
 
         while(opcao != 0){
-
+            
             System.out.println("----------------------------------------");
             System.out.println("- Seja bem vindo a biblioteca central! -");
             System.out.println("----------------------------------------");
@@ -16,8 +16,10 @@ public class Cadastro_de_livros {
             System.out.println("[1] Cadastrar um livro.\n" +
                                "[2] Cadastrar um autor.\n" +
                                "[3] Consultar um livro.\n" +
-                               "[4] Consultar um ator.\n"  +  //fazer pra ebook
+                               "[4] Consultar um ator.\n"  +
+                               "[5] Aplicar desconto.\n"   +
                                "[0] Sair do programa.");
+
             
             opcao = scan.nextInt();
 
@@ -37,7 +39,7 @@ public class Cadastro_de_livros {
                         Autor autor_existente = reg.getAutor(nome_autor);
 
                         if(escolha == 1){
-                        reg.novoLivro(new LivroFisico(autor_existente), scan);   //dar um jeito de ver se ja tem um autor desses
+                        reg.novoLivro(new LivroFisico(autor_existente), scan);   
 
                         } else if (escolha == 2) {
                         reg.novoLivro(new Ebook(autor_existente), scan);
@@ -45,24 +47,28 @@ public class Cadastro_de_livros {
                         } else {
                         System.out.println("Insira um valor valido!");
                         continue; }
-
                     } else {
+                        
+                        Autor autorx = new Autor(nome_autor);
+
+                        reg.novoAutor(autorx, scan);
 
                         if(escolha == 1){
-                        reg.novoLivro(new LivroFisico(new Autor(nome_autor)), scan);   //dar um jeito de ver se ja tem um autor desses
+                        reg.novoLivro(new LivroFisico(autorx), scan);   
 
                         } else if (escolha == 2) {
-                        reg.novoLivro(new Ebook(new Autor(nome_autor)), scan);
+                        reg.novoLivro(new Ebook(autorx), scan);
         
                         } else {
                         System.out.println("Insira um valor valido!");
                         continue;}
-                    }
+                    } 
+                    break;
                 case 2:
                     System.out.println("Insira o nome do autor:");
                     String nome_autor2 = scan.nextLine();
                     reg.novoAutor(new Autor(nome_autor2), scan);
-
+                    break;
                 case 3:
                     System.out.println("Insira o nome do livro que voce deseja consultar:");
                     scan.nextLine();
@@ -73,7 +79,7 @@ public class Cadastro_de_livros {
                     } else{
                         System.out.println("Livro nao consta no sistema.");
                     }
-                
+                    break;
                 case 4:
                     System.out.println("Insira o nome do autor:");
                     scan.nextLine();
@@ -84,12 +90,29 @@ public class Cadastro_de_livros {
                     } else{
                         System.out.println("Autor nao consta no sistema.");
                     }
+                    break;
+                case 5:
+                System.out.println("Qual livro deseja aplicar desconto?");
+                scan.nextLine();
+                String livroDesconto = scan.nextLine();
+                Livro livro_desconto = reg.getLivro(livroDesconto);
+                
+                if (livro_desconto != null){
+                    System.out.println("Quantos % de desconto deseja aplicar?");
+                    Double desconto = scan.nextDouble();
+                    livro_desconto.aplicaDesconto(desconto/100);
+                } else {
+                    System.out.println("Este livro não existe no banco de dados.");
+                }
+                default:
+                    System.out.println("Insira um numero valido.");
                 
 
 
             }
            
-        scan.close();
+        
     }
+    scan.close();
     }
 }

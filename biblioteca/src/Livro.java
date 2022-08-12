@@ -30,6 +30,7 @@ public class Livro {
         if (porcentagem > 0.3){
             System.out.println("O desconto não pode passar de 30%");
         }
+        System.out.println("O livro " + nome + " recebeu " + (this.valor * porcentagem) + "R$ de desconto." );
 		this.valor -= this.valor * porcentagem;
 	}
 
