@@ -6,7 +6,6 @@ public class Main {
 		System.out.println(telaString);
 		relogio1.tempoTic();
 		System.out.println(telaString);
-		
 	}
 
 }
