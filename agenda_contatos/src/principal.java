@@ -1,5 +1,4 @@
 public class principal {
-
 	public static void main(String[] args) {
 		
 		Contato contato1 = new Contato("Alicia","79 911111111");

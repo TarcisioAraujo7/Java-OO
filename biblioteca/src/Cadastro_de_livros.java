@@ -18,6 +18,7 @@ public class Cadastro_de_livros {
                                "[3] Consultar um livro.\n" +
                                "[4] Consultar um ator.\n"  +
                                "[5] Aplicar desconto.\n"   +
+                               "[6] Realizar compra.\n"    +
                                "[0] Sair do programa.");
 
             
