@@ -93,18 +93,22 @@ public class Cadastro_de_livros {
                     }
                     break;
                 case 5:
-                System.out.println("Qual livro deseja aplicar desconto?");
-                scan.nextLine();
-                String livroDesconto = scan.nextLine();
-                Livro livro_desconto = reg.getLivro(livroDesconto);
-                
-                if (livro_desconto != null){
-                    System.out.println("Quantos % de desconto deseja aplicar?");
-                    Double desconto = scan.nextDouble();
-                    livro_desconto.aplicaDesconto(desconto/100);
-                } else {
-                    System.out.println("Este livro não existe no banco de dados.");
-                }
+                    System.out.println("Qual livro deseja aplicar desconto?");
+                    scan.nextLine();
+                    String livroDesconto = scan.nextLine();
+                    Livro livro_desconto = reg.getLivro(livroDesconto);
+                    
+                    if (livro_desconto != null){
+                        System.out.println("Quantos % de desconto deseja aplicar?");
+                        Double desconto = scan.nextDouble();
+                        livro_desconto.aplicaDesconto(desconto/100);
+                    } else {
+                        System.out.println("Este livro não existe no banco de dados.");
+                    }
+                    break;
+                case 6:
+                    CarrinhoCompras carrinho = new CarrinhoCompras();
+                    
                 default:
                     System.out.println("Insira um numero valido.");
                 
