@@ -32,6 +32,9 @@ public class CarrinhoCompras{
             String ajuste = " ".repeat(15 - nomeLivro.length()); 
             System.out.println("(" + (i+1) +") " + nomeLivro + ajuste + livroAtual.getValor() );
         }
-        System.out.println("\nTotal:             " + total);
+        if(tamanho >= 3){
+            total -= total * 0.3;
+        }
+        System.out.printf("\nTotal:             %.1f\n", total);
     }
 }
