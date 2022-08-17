@@ -5,10 +5,10 @@ import java.util.Iterator;
 
 public class Registro {
 
-    List<Livro> servidor_livros = new ArrayList<Livro>();
-    List<Autor> servidor_autores = new ArrayList<Autor>();
+    private static List<Livro> servidor_livros = new ArrayList<Livro>();
+    private static List<Autor> servidor_autores = new ArrayList<Autor>();
 
-    public Livro getLivro(String nome){
+    public static Livro getLivro(String nome){
 
         Iterator<Livro> it = servidor_livros.iterator();
          while ( it.hasNext()) {
@@ -21,7 +21,7 @@ public class Registro {
          return null;
     }
 
-    public Autor getAutor(String nome){
+    public static Autor getAutor(String nome){
 
         Iterator<Autor> it = servidor_autores.iterator();
          while ( it.hasNext()) {
@@ -34,7 +34,7 @@ public class Registro {
          return null;
     }
 
-    public Boolean temAutor(String nome){
+    public static Boolean temAutor(String nome){
         if(getAutor(nome) != null){
             return true;
         } else{
@@ -42,7 +42,7 @@ public class Registro {
         }
     }
 
-    public void novoLivro(Livro livro, Scanner sc){
+    public static void novoLivro(Livro livro, Scanner sc){
         
 
         servidor_livros.add(livro);
@@ -66,7 +66,7 @@ public class Registro {
         System.out.println("-----------------------------");
     }
 
-    public void novoAutor(Autor autor, Scanner sc){
+    public static void novoAutor(Autor autor, Scanner sc){
         
         servidor_autores.add(autor);
 

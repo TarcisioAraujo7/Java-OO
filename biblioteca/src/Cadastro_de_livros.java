@@ -4,7 +4,6 @@ public class Cadastro_de_livros {
     public static void main(String[] args) throws Exception {
 
         Scanner scan = new Scanner(System.in);
-        Registro reg = new Registro();
         CarrinhoCompras carrinho = new CarrinhoCompras();
         int opcao = 1;
 
@@ -39,15 +38,15 @@ public class Cadastro_de_livros {
                     System.out.println("Insira o nome do autor do livro:");
                     String nome_autor = scan.nextLine();
 
-                    if(reg.temAutor(nome_autor)){
+                    if(Registro.temAutor(nome_autor)){
                         
-                        Autor autor_existente = reg.getAutor(nome_autor);
+                        Autor autor_existente = Registro.getAutor(nome_autor);
 
                         if(escolha == 1){
-                        reg.novoLivro(new LivroFisico(autor_existente), scan);   
+                            Registro.novoLivro(new LivroFisico(autor_existente), scan);   
 
                         } else if (escolha == 2) {
-                        reg.novoLivro(new Ebook(autor_existente), scan);
+                            Registro.novoLivro(new Ebook(autor_existente), scan);
 
                         } else {
                         System.out.println("Insira um valor valido!");
@@ -56,13 +55,13 @@ public class Cadastro_de_livros {
                         
                         Autor autorx = new Autor(nome_autor);
 
-                        reg.novoAutor(autorx, scan);
+                        Registro.novoAutor(autorx, scan);
 
                         if(escolha == 1){
-                        reg.novoLivro(new LivroFisico(autorx), scan);   
+                            Registro.novoLivro(new LivroFisico(autorx), scan);   
 
                         } else if (escolha == 2) {
-                        reg.novoLivro(new Ebook(autorx), scan);
+                            Registro.novoLivro(new Ebook(autorx), scan);
         
                         } else {
                         System.out.println("Insira um valor valido!");
@@ -73,7 +72,7 @@ public class Cadastro_de_livros {
                 case 2:
                     System.out.println("Insira o nome do autor:");
                     String nome_autor2 = scan.nextLine();
-                    reg.novoAutor(new Autor(nome_autor2), scan);
+                    Registro.novoAutor(new Autor(nome_autor2), scan);
                     break;
 
                 case 3:
@@ -81,8 +80,8 @@ public class Cadastro_de_livros {
                     scan.nextLine();
                     String nome_consultado = scan.nextLine();
                 
-                    if (reg.getLivro(nome_consultado) != null) {
-                        reg.getLivro(nome_consultado).mostrarDados();
+                    if (Registro.getLivro(nome_consultado) != null) {
+                        Registro.getLivro(nome_consultado).mostrarDados();
                     } else{
                         System.out.println("Livro nao consta no sistema.");
                     }
@@ -93,8 +92,8 @@ public class Cadastro_de_livros {
                     scan.nextLine();
                     String nome_autor3 = scan.nextLine();
 
-                    if (reg.getAutor(nome_autor3) != null) {
-                        reg.getAutor(nome_autor3).mostrarAutor();
+                    if (Registro.getAutor(nome_autor3) != null) {
+                        Registro.getAutor(nome_autor3).mostrarAutor();
                     } else{
                         System.out.println("Autor nao consta no sistema.");
                     }
@@ -104,7 +103,7 @@ public class Cadastro_de_livros {
                     System.out.println("Qual livro deseja aplicar desconto?");
                     scan.nextLine();
                     String livroDesconto = scan.nextLine();
-                    Livro livro_desconto = reg.getLivro(livroDesconto);
+                    Livro livro_desconto = Registro.getLivro(livroDesconto);
                     
                     if (livro_desconto != null){
                         System.out.println("Quantos % de desconto deseja aplicar?");
@@ -121,8 +120,8 @@ public class Cadastro_de_livros {
                     scan.nextLine();
                     String nome_carrinho = scan.nextLine();
                 
-                    if (reg.getLivro(nome_carrinho) != null) {
-                        carrinho.addLivro(reg.getLivro(nome_carrinho), scan);
+                    if (Registro.getLivro(nome_carrinho) != null) {
+                        carrinho.addLivro(Registro.getLivro(nome_carrinho), scan);
                     } else{
                         System.out.println("Livro nao consta no sistema.");
                     }
