@@ -24,7 +24,7 @@ public class MusicOrganizer
         tracks = new ArrayList<>();
         player = new MusicPlayer();
         reader = new TrackReader();
-        readLibrary("../audio");
+        readLibrary("C:\\GitHub\\Java-OO\\player_musicas\\audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
     }
