@@ -14,6 +14,8 @@ public class Ebook extends Livro {
         return waterMark;
     }
 
+    
+    @Override
     void aplicaDesconto(Double porcentagem) {
         if (porcentagem > 0.35){
             System.out.println("O desconto não pode passar de 35%");
