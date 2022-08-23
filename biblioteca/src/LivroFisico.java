@@ -6,4 +6,8 @@ public class LivroFisico extends Livro {
     Double getTaxaimpressao(){
         return this.getValor() * 0.02;
     }
+
+    public String toString(){
+        return this.getNome();
+    }
 }

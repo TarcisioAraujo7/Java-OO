@@ -20,5 +20,9 @@ public class Ebook extends Livro {
         }
 		this.setValor(this.getValor() - this.getValor() * porcentagem);
 	}
+
+    public String toString(){
+        return this.getNome();
+    }
     
 }
