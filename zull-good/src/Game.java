@@ -34,30 +34,44 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room casa, arraia, mar_aberto, tubarao, minas, canion, tartaruga, agua_viva, sidney;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        casa = new Room("na sua casa mas não sabe onde o Nemo está");
+        arraia = new Room("onde o Nemo estuda, mas ele tambem não esta aqui");
+        mar_aberto = new Room("no mar aberto e encontrou uma peixe chamada Dori! Ela irá te acompanhar agora!");
+        tubarao = new Room("onde assustadores tubarões vivem");
+        minas = new Room("em um lugar perigoso");
+        canion = new Room("em um canion escuro e perigoso, cuidado!");
+        tartaruga = new Room("em uma corrente maritima com as tartarugas! Você ainda não encontrou o Nemo");
+        agua_viva = new Room("junto com as aguas-vivas. Muito cuidado!");
+        sidney = new Room("COM O NEMO, PARABENS! 🥳");
+
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        casa.setExit("north", arraia);
 
-        theater.setExit("west", outside);
+        arraia.setExit("west", mar_aberto);
+        arraia.setExit("south", casa);
+        arraia.setExit("north", tubarao);
 
-        pub.setExit("east", outside);
+        mar_aberto.setExit("east", arraia);
+        mar_aberto.setExit("north", tubarao);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        tubarao.setExit("east", minas);
+        tubarao.setExit("north", canion);
 
-        office.setExit("west", lab);
+        canion.setExit("north", agua_viva);
+        canion.setExit("west", tartaruga);
 
-        currentRoom = outside;  // start game outside
+        tartaruga.setExit("south", canion);
+        tartaruga.setExit("east", agua_viva);
+
+        agua_viva.setExit("south", canion);
+        agua_viva.setExit("west", tartaruga);
+        agua_viva.setExit("north", sidney);
+
+        currentRoom = casa;  // start game outside
     }
 
     /**
@@ -75,7 +89,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Obrigado por jogar.  Até mais.");
     }
 
     /**
@@ -84,9 +98,9 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
+        System.out.println("Bem vindo ao Procurando Nemo!");
+        System.out.println("Procurando Nemo definitivamente é um jogo de procurar o Nemo.");
+        System.out.println("Digite 'help' se precisa de ajuda.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -101,7 +115,7 @@ public class Game
         boolean wantToQuit = false;
 
         if(command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("Não entendi...");
             return false;
         }
 
@@ -128,10 +142,8 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
+        
+        System.out.println("Seus comandos são:");
         parser.showCommands();
     }
 
