@@ -17,9 +17,10 @@
 
 public class Game 
 {
+    private Interacao interagir = new Interacao();
     private Parser parser;
     private Room currentRoom;
-        
+    private Room finalRoom;
     /**
      * Create the game and initialise its internal map.
      */
@@ -34,18 +35,19 @@ public class Game
      */
     private void createRooms()
     {
-        Room casa, arraia, mar_aberto, tubarao, minas, canion, tartaruga, agua_viva, sidney;
+        Room casa, arraia, mar_aberto, tubarao, minas, canion, peixe_abissal, tartaruga, agua_viva, sidney;
       
         // create the rooms
         casa = new Room("na sua casa mas não sabe onde o Nemo está");
-        arraia = new Room("onde o Nemo estuda, mas ele tambem não esta aqui");
+        arraia = new Room("na escola onde o Nemo estuda, mas ele tambem não esta aqui");
         mar_aberto = new Room("no mar aberto e encontrou uma peixe chamada Dori! Ela irá te acompanhar agora!");
-        tubarao = new Room("onde assustadores tubarões vivem");
-        minas = new Room("em um lugar perigoso");
-        canion = new Room("em um canion escuro e perigoso, cuidado!");
+        tubarao = new Room("onde tubarões assustadores vivem");
+        minas = new Room("nas minas, cuid- KABUMMMMMMMM");
+        canion = new Room("em um canion escuro e perigoso. Você sente que se tentar voltar para aqui irá se perder, cuidado!");
+        peixe_abissal = new Room("com um peixe perigoso que vive no fundo do mar. Não tem escapatoria");
         tartaruga = new Room("em uma corrente maritima com as tartarugas! Você ainda não encontrou o Nemo");
         agua_viva = new Room("junto com as aguas-vivas. Muito cuidado!");
-        sidney = new Room("COM O NEMO, PARABENS! 🥳");
+        sidney = new Room("COM O NEMO, PARABENS!");
 
         
         // initialise room exits
@@ -57,20 +59,33 @@ public class Game
 
         mar_aberto.setExit("east", arraia);
         mar_aberto.setExit("north", tubarao);
+        interagir.setDialogRoom(mar_aberto, "Dori: Vamos seguir em frente! E cuidado com os tubarões, eles são mentirosos.");
 
         tubarao.setExit("east", minas);
         tubarao.setExit("north", canion);
+        interagir.setDialogRoom(tubarao, "Tubarão assustador: Um conselho, vá para a direção EAST pois a direção NORTH é muito perigosa.");;
 
         canion.setExit("north", agua_viva);
         canion.setExit("west", tartaruga);
 
-        tartaruga.setExit("south", canion);
         tartaruga.setExit("east", agua_viva);
+        tartaruga.setExit("south", peixe_abissal);
+        interagir.setDialogRoom(tartaruga, "Tartaruga lider: O Nemo passou por aqui, você tem que seguir a direção NORTH quando passar as aguas-vivas para encontrar ele.");
 
-        agua_viva.setExit("south", canion);
+        agua_viva.setExit("south", peixe_abissal);
         agua_viva.setExit("west", tartaruga);
         agua_viva.setExit("north", sidney);
 
+        interagir.setDeathRoom(peixe_abissal);
+        interagir.setDialogRoom(peixe_abissal, "Você morreu pois tentou voltar para o desfiladeiro, se perdeu e foi parar na boca de um peixe perigoso.\n Tenha mais cuidado da proxima vez!");
+        
+        interagir.setDeathRoom(minas);
+        interagir.setDialogRoom(minas, "Você morreu pois acreditou no tubarão e foi para as minas. Tenha mais cuidado da proxima vez!");
+
+        interagir.setDialogRoom(sidney, "PARABENS!!! Você chegou ao final do jogo, deve ter percebido que o caminho até o final foi apenas em uma direção.\n"
+                                +   "Esta é a lição tanto do filme quanto deste jogo: siga sempre em frente!");
+
+        finalRoom = sidney;
         currentRoom = casa;  // start game outside
     }
 
@@ -85,7 +100,13 @@ public class Game
         // execute them until the game is over.
                 
         boolean finished = false;
+
         while (! finished) {
+            if(interagir.checkDeathRoom(currentRoom) || currentRoom == finalRoom){
+                interagir.interact(currentRoom);
+                break;
+            }
+            interagir.interact(currentRoom);
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -100,7 +121,7 @@ public class Game
         System.out.println();
         System.out.println("Bem vindo ao Procurando Nemo!");
         System.out.println("Procurando Nemo definitivamente é um jogo de procurar o Nemo.");
-        System.out.println("Digite 'help' se precisa de ajuda.");
+        System.out.println("Digite 'help' se precisar de ajuda.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
