@@ -9,6 +9,7 @@ public class Jogo extends Produto {
     private List<Conquista> conquistas = new ArrayList<Conquista>();
 
     public Jogo(String nome, String descricao) {
+
         super(nome, descricao);
     }
     
