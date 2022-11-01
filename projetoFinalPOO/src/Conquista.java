@@ -3,7 +3,7 @@ public class Conquista {
     private String descricao;
     private int progressoAObter;
 
-    public Conquista(String nome, String descricao, Int progressoAObter){
+    public Conquista(String nome, String descricao, int progressoAObter){
         this.nome = nome;
         this.descricao = descricao;
         this.progressoAObter = progressoAObter;
