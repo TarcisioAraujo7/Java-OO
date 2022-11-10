@@ -20,6 +20,24 @@ public class Jogador {
         saldoTotal = 0;
     }
 
+    public void comprarJogo(Jogo jogo){
+        if (saldoTotal >= jogo.preco) {
+            jogosPessoais.add(jogo);
+            saldoTotal -= jogo.preco;
+        } else {
+            System.out.println("Saldo invalido");
+        }
+    }
+
+    public void jogarJogo(Jogo jogo, int horasJogadas){
+        if (saldoTotal >= jogo.preco) {
+            jogosPessoais.add(jogo);
+            saldoTotal -= jogo.preco;
+        } else {
+            System.out.println("Saldo invalido");
+        }
+    }
+
     public Boolean confereSenha(String senha){
         return this.senha.equals(senha);
     }

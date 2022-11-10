@@ -46,5 +46,17 @@ public class Sessao {
         playerAtual = null;
     }
 
+    public void jogar(Jogo jogo){
+        if (playerAtual.equals(null)){
 
+        }
+    }
+
+    public Jogador getPlayerAtual() {
+        return playerAtual;
+    }
+
+    public void setPlayerAtual(Jogador playerAtual) {
+        this.playerAtual = playerAtual;
+    }
 }

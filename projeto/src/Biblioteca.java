@@ -21,5 +21,7 @@ public class Biblioteca {
         loja.addAlbum(albumDoom);
 
         sessaoAtual = new Sessao();
+
+        sessaoAtual.getPlayerAtual.comprarJogo(doom);
     }
 }
