@@ -8,9 +8,9 @@ public class Jogo extends Produto {
 
     private List<Conquista> conquistas = new ArrayList<Conquista>();
 
-    public Jogo(String nome, String descricao) {
+    public Jogo(String nome, String descricao, float preco) {
 
-        super(nome, descricao);
+        super(nome, descricao, preco);
     }
     
     public void Jogar(int horasJogadas){

@@ -4,16 +4,12 @@ import java.util.List;
 
 public class Jogador {
 
-    private String nome;
-    private String senha;
     private List<Jogo> jogosPessoais;
     private List<AlbumMusical> albunsPessoais;
     private int reputacao;
     private float saldoTotal;
 
-    public Jogador(String nome, String senha){
-        this.nome = nome;
-        this.senha = senha;
+    public Jogador(){
         jogosPessoais = new ArrayList<Jogo>();
         albunsPessoais = new ArrayList<AlbumMusical>();
         reputacao = 0;
@@ -21,33 +17,23 @@ public class Jogador {
     }
 
     public void comprarJogo(Jogo jogo){
-        if (saldoTotal >= jogo.preco) {
+        if (saldoTotal >= jogo.getPreco()) {
             jogosPessoais.add(jogo);
-            saldoTotal -= jogo.preco;
+            saldoTotal -= jogo.getPreco();
         } else {
             System.out.println("Saldo invalido");
         }
     }
 
     public void jogarJogo(Jogo jogo, int horasJogadas){
-        if (saldoTotal >= jogo.preco) {
+        if (saldoTotal >= jogo.getPreco()) {
             jogosPessoais.add(jogo);
-            saldoTotal -= jogo.preco;
+            saldoTotal -= jogo.getPreco();
         } else {
             System.out.println("Saldo invalido");
         }
     }
 
-    public Boolean confereSenha(String senha){
-        return this.senha.equals(senha);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public List<Jogo> getJogosPessoais() {
         return jogosPessoais;

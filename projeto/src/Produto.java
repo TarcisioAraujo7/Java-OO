@@ -4,7 +4,7 @@ public class Produto {
     private String descricao;
     private int id;
     final private float preco;
-    
+
     public String getNome() {
         return nome;
     }
@@ -37,6 +37,8 @@ public class Produto {
         }
         
     }
-
+    public float getPreco() {
+        return preco;
+    }
     
 }

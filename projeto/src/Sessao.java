@@ -1,62 +1,30 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class Sessao {
-    private List<Jogador> playersCadastrados;
-    private Jogador playerAtual;
+    private Jogador playerLogado;
+    private final String nickDefinido = "terra";
+    private final String senhaDefinida = "2022";
 
-    public Sessao(){
-        playersCadastrados = new ArrayList<Jogador>();
-    }
-
-    public void cadastrarPlayer(String nome, String senha){
-
-        if (playersCadastrados.isEmpty()) {
-            playersCadastrados.add(new Jogador(nome, senha));
-        } else {
-
-            Boolean jaExiste = false;
-            for (Jogador jogador : playersCadastrados) {
-                if (jogador.getNome().equals(nome)) {
-                    System.out.println("Já existe um player com este nome. Escolha outro!");
-                    jaExiste = true;
-                }
-            }
-
-            if (jaExiste.equals(false)) {
-                playersCadastrados.add(new Jogador(nome, senha));
-            }
-
-        }
-
-    }
 
     public void login(String nome, String senha){
-        for (Jogador jogador : playersCadastrados) {
-            if (jogador.getNome().equals(nome)) {
-                if (jogador.confereSenha(senha)) {
-                    playerAtual = jogador;
-                }
-            }
 
+        if (Objects.equals(nickDefinido, nome) && Objects.equals(senhaDefinida, senha)) {
+            playerLogado = new Jogador();
+    }
+    }
+
+    public void jogar(Jogo jogo, int horasJogadas){
+        if(playerLogado == null){
+            System.out.println("Faça login primeiro!");
+        } else{
+            jogo.Jogar(horasJogadas);
         }
+
     }
 
-    public void logout(){
-        playerAtual = null;
+    public Jogador getPlayerLogado() {
+        return playerLogado;
     }
 
-    public void jogar(Jogo jogo){
-        if (playerAtual.equals(null)){
 
-        }
-    }
-
-    public Jogador getPlayerAtual() {
-        return playerAtual;
-    }
-
-    public void setPlayerAtual(Jogador playerAtual) {
-        this.playerAtual = playerAtual;
-    }
 }
