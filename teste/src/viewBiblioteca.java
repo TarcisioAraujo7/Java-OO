@@ -143,9 +143,9 @@ public class viewBiblioteca {
 		panel_1.add(comboBoxMeusJogos);
 		comboBoxMeusJogos.setToolTipText("MEUSJOGOS");
 
-		JLabel txtTituloComprar = new JLabel("COMPRAR");
+		JLabel txtTituloComprar = new JLabel("LOJA");
 		txtTituloComprar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtTituloComprar.setBounds(58, 11, 107, 14);
+		txtTituloComprar.setBounds(75, 11, 107, 14);
 		panel_2.add(txtTituloComprar);
 		
 		JButton btnComprarJogo = new JButton("COMPRAR");
