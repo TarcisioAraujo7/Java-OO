@@ -1,46 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.swing.JOptionPane;
 
 public class Jogador {
 
-    private List<Jogo> jogosPessoais;
-    private List<AlbumMusical> albunsPessoais;
+    private String nome;
     private int conquistas;
     private float saldoTotal;
 
-    public Jogador(){
-        jogosPessoais = new ArrayList<Jogo>();
-        albunsPessoais = new ArrayList<AlbumMusical>();
+    public Jogador(String nome){
         conquistas = 0;
-        saldoTotal = 0;
+        saldoTotal = 50;
+        this.nome = nome;
     }
 
-    public void comprarJogo(Jogo jogo){
+    public boolean comprarJogo(Jogo jogo){
         if (saldoTotal >= jogo.getPreco()) {
-            jogosPessoais.add(jogo);
+            jogo.setPossui(true);
             saldoTotal -= jogo.getPreco();
+            return true;
         } else {
-            System.out.println("Saldo invalido");
+            JOptionPane.showMessageDialog(null, "Você não tem saldo suficiente!", "Solar",JOptionPane.ERROR_MESSAGE);
+            return false;       
         }
     }
 
-    public void jogarJogo(Jogo jogo, int horasJogadas){
-        if (saldoTotal >= jogo.getPreco()) {
-            jogosPessoais.add(jogo);
-            saldoTotal -= jogo.getPreco();
-        } else {
-            System.out.println("Saldo invalido");
-        }
+    public String getNome() {
+        return nome;
     }
 
-
-    public List<Jogo> getJogosPessoais() {
-        return jogosPessoais;
+    public int getConquistas() {
+        return conquistas;
     }
 
-    public List<AlbumMusical> getAlbunsPessoais() {
-        return albunsPessoais;
+    public void setSaldoTotal(float saldoTotal) {
+        this.saldoTotal = saldoTotal;
     }
 
     public float getSaldoTotal() {

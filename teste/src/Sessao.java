@@ -1,14 +1,12 @@
 
-public class Sessao extends viewLogin{
+public class Sessao {
 
     private Jogador playerLogado;
     private Jogo jogoAtual;
 
 
-    public void login(){
-
-        playerLogado = new Jogador();
-        
+    public Sessao() {
+        this.playerLogado = new Jogador("Terra");
     }
 
     public Jogo getJogoAtual() {
@@ -19,5 +17,13 @@ public class Sessao extends viewLogin{
         return playerLogado;
     }
 
+    public void setPlayerLogado(Jogador playerLogado) {
+        this.playerLogado = playerLogado;
+    }
+
+    public void setJogoAtual(Jogo jogoAtual) {
+        this.jogoAtual = jogoAtual;
+    }
+    
 
 }

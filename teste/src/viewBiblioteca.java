@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -15,7 +16,7 @@ import javax.swing.JTextField;
 public class viewBiblioteca {
 
 	private JFrame frame;
-	private int saldo;
+	private float saldo;
 	private JTextField textField;
 
 	
@@ -26,7 +27,7 @@ public class viewBiblioteca {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	protected void initialize(List<Produto> produtoDisponiveis) {
+	protected void initialize(List<Produto> produtoDisponiveis, Jogador player) {
 		setFrame(new JFrame());
 		getFrame().getContentPane().setForeground(Color.WHITE);
 		getFrame().getContentPane().setBackground(Color.WHITE);
@@ -110,13 +111,17 @@ public class viewBiblioteca {
 		btnNewButton.setBounds(34, 68, 100, 23);
 		panel_4.add(btnNewButton);
 		
+		saldo = player.getSaldoTotal();
+
 		JButton btnComprar = new JButton("+ COMPRAR SALDO");
 		btnComprar.setBounds(570, 399, 160, 29);
 		btnComprar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnComprar.setBackground(Color.GREEN);
+		txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtSaldo.setText(String.format("SALDO:  %d", saldo +=  10));
+				player.setSaldoTotal( saldo += 10);
+				txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
 			}
 		});
 		getFrame().getContentPane().add(btnComprar);
@@ -126,10 +131,18 @@ public class viewBiblioteca {
 		getFrame().getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		JComboBox<String> comboBoxComprar = addJogos(produtoDisponiveis);
+		JComboBox<String> comboBoxComprar = addJogos(produtoDisponiveis, false);
 		panel_2.add(comboBoxComprar);
 		 
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(282, 26, 175, 147);
+		getFrame().getContentPane().add(panel_1);
+		panel_1.setLayout(null);
 		
+		JComboBox<String> comboBoxMeusJogos = addJogos(produtoDisponiveis, true);
+		panel_1.add(comboBoxMeusJogos);
+		comboBoxMeusJogos.setToolTipText("MEUSJOGOS");
+
 		JLabel txtTituloComprar = new JLabel("COMPRAR");
 		txtTituloComprar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTituloComprar.setBounds(58, 11, 107, 14);
@@ -137,17 +150,29 @@ public class viewBiblioteca {
 		
 		JButton btnComprarJogo = new JButton("COMPRAR");
 		btnComprarJogo.setBounds(36, 76, 99, 23);
+		btnComprarJogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				comboBoxComprar.getSelectedItem();
+
+				for (Produto produto : produtoDisponiveis) {
+					if (produto instanceof Jogo) {
+						if (produto.toString().equals(comboBoxComprar.getSelectedItem()) && player.comprarJogo((Jogo) produto)) {
+							
+							comboBoxMeusJogos.addItem(produto.toString());
+							comboBoxComprar.removeItem(comboBoxComprar.getSelectedItem());
+							saldo = player.getSaldoTotal();
+							txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
+							break;
+					}
+					}
+					
+				}
+				
+			}
+		});
+		
 		panel_2.add(btnComprarJogo);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(282, 26, 175, 147);
-		getFrame().getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JComboBox<String> comboBoxMeusJogos = new JComboBox<String>();
-		comboBoxMeusJogos.setBounds(10, 36, 155, 22);
-		panel_1.add(comboBoxMeusJogos);
-		comboBoxMeusJogos.setToolTipText("MEUSJOGOS");
 		
 		JLabel txtTituloMeuJogos = new JLabel("MEUS JOGOS");
 		txtTituloMeuJogos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -169,16 +194,18 @@ public class viewBiblioteca {
 		this.frame = frame;
 	}
 
-	public JComboBox<String> addJogos(List<Produto> produtoDisponiveis){
+	public JComboBox<String> addJogos(List<Produto> produtoDisponiveis, boolean possui){
 		JComboBox<String> comboBoxComprar = new JComboBox<String>();
 		comboBoxComprar.setBounds(10, 33, 155, 22);
 
 		for (Produto produto : produtoDisponiveis) {
-			if (produto instanceof Jogo) {
+			if (produto instanceof Jogo && produto.getPossui() == possui) {
 				comboBoxComprar.addItem(produto.toString());
 			}
 		}
 		
 		return comboBoxComprar;
 	}
+
+	
 }

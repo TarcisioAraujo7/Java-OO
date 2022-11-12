@@ -10,12 +10,12 @@ public class Biblioteca extends viewBiblioteca{
 
     public Biblioteca(){
         
-        
+        sessaoAtual = new Sessao();
         loja = new Loja();
         setBiblioteca();
         List<Produto> produtosDisponiveis = loja.getProdutoDisponiveis();
 
-        initialize(produtosDisponiveis);
+        initialize(produtosDisponiveis, sessaoAtual.getPlayerLogado());
         
     }
 
@@ -102,14 +102,6 @@ public class Biblioteca extends viewBiblioteca{
         albumUndertale.setMusica("Enemy Approaching");
 
         loja.addAlbum(albumUndertale);
-    }
-
-    public void comprarJogo(Jogo jogo){
-        if(sessaoAtual.getPlayerLogado() == null){
-            System.out.println("Faça login primeiro!");
-        } else {
-            sessaoAtual.getPlayerLogado().comprarJogo(jogo);
-        }
 
     }
 

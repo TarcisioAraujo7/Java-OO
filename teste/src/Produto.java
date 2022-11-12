@@ -3,6 +3,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private int id;
+    private Boolean possui;
     final private float preco;
 
     public String getNome() {
@@ -25,13 +26,16 @@ public class Produto {
 
     @Override
     public String toString() {
-        return nome + ", preco= R$" + preco ;
+        return nome + ", R$" + preco ;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public void setPossui(Boolean possui) {
+        this.possui = possui;
+    }
     public Produto(String nome, String descricao, Float preco) {
         this.nome = nome;
         this.descricao = descricao;
@@ -41,10 +45,16 @@ public class Produto {
         } else {
             this.preco = preco;
         }
+
+        this.possui = false;
         
     }
     public float getPreco() {
         return preco;
+    }
+
+    public Boolean getPossui() {
+        return possui;
     }
     
 }
