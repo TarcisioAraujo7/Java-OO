@@ -1,12 +1,22 @@
-public class Biblioteca {
+import java.util.List;
+
+public class Biblioteca extends viewBiblioteca{
+
 
     Sessao sessaoAtual;
     Loja loja;
 
+    // jogo atual
+
     public Biblioteca(){
         
+        
         loja = new Loja();
+        setBiblioteca();
+        List<Produto> produtosDisponiveis = loja.getProdutoDisponiveis();
 
+        initialize(produtosDisponiveis);
+        
     }
 
     public void setBiblioteca(){
@@ -103,10 +113,8 @@ public class Biblioteca {
 
     }
 
-    public void login(String username, String password){
-        sessaoAtual.login(username, password);
-    }
 
+    
     public void jogar(Jogo jogo, int horasJogadas){
         if(sessaoAtual.getPlayerLogado() == null){
             System.out.println("Faça login primeiro!");
