@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -18,6 +19,7 @@ public class viewBiblioteca {
 	private JFrame frame;
 	private float saldo;
 	private int conquistas;
+	private int jogosPossuidos;
 	private JTextField horasField;
 
 	
@@ -66,10 +68,7 @@ public class viewBiblioteca {
 		txtConquistas.setBounds(10, 268, 102, 14);
 		panel.add(txtConquistas);
 		
-		JLabel txtJogos = new JLabel("JOGOS:");
-		txtJogos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtJogos.setBounds(10, 228, 46, 14);
-		panel.add(txtJogos);
+		
 		
 		JButton btnvoltarLogin = new JButton("Voltar");
 		btnvoltarLogin.setBounds(73, 402, 89, 23);
@@ -144,6 +143,12 @@ public class viewBiblioteca {
 		panel_1.add(comboBoxMeusJogos);
 		comboBoxMeusJogos.setToolTipText("MEUSJOGOS");
 
+		jogosPossuidos = jogosComprados(produtoDisponiveis);
+		JLabel txtJogos = new JLabel("JOGOS: " + jogosPossuidos);
+		txtJogos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtJogos.setBounds(10, 228, 102, 14);
+		panel.add(txtJogos);
+
 		JLabel txtTituloComprar = new JLabel("LOJA");
 		txtTituloComprar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTituloComprar.setBounds(75, 11, 107, 14);
@@ -164,6 +169,8 @@ public class viewBiblioteca {
 							comboBoxComprar.removeItem(comboBoxComprar.getSelectedItem());
 							saldo = player.getSaldoTotal();
 							txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
+							jogosPossuidos = jogosComprados(produtoDisponiveis);
+							txtJogos.setText("JOGOS: " + jogosPossuidos);
 							break;
 					}
 					}
@@ -233,6 +240,17 @@ public class viewBiblioteca {
 		}
 		
 		return comboBoxComprar;
+	}
+
+	public int jogosComprados(List<Produto> produtoDisponiveis){
+		List<Produto> jogos = new ArrayList<Produto>();
+		for (Produto produto : produtoDisponiveis) {
+			if (produto instanceof Jogo && produto.getPossui()) {
+				jogos.add(produto);
+			}
+		}
+
+		return jogos.size();
 	}
 
 	

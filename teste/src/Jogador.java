@@ -8,6 +8,7 @@ public class Jogador {
     private String nome;
     private int conquistas;
     private float saldoTotal;
+    
 
     public Jogador(String nome){
         conquistas = 0;
