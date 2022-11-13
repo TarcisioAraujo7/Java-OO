@@ -2,7 +2,6 @@ public class Produto {
     
     private String nome;
     private String descricao;
-    private int id;
     private Boolean possui;
     final private float preco;
 
@@ -20,17 +19,9 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return nome + ", R$" + preco ;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setPossui(Boolean possui) {

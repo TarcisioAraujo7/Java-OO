@@ -107,12 +107,5 @@ public class Biblioteca extends viewBiblioteca{
 
 
     
-    public void jogar(Jogo jogo, int horasJogadas){
-        if(sessaoAtual.getPlayerLogado() == null){
-            System.out.println("Faça login primeiro!");
-        } else{
-            jogo.Jogar(horasJogadas);
-        }
-
-    }
+    
 }

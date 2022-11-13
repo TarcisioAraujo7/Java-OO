@@ -17,12 +17,17 @@ public class viewLogin {
 	private JTextField interactiveLogin;
 	private JTextField interactiveSenha;
     
+	private String login;
+	private String senha;
+
 
 	/**
 	 * Create the application.
 	 */
-	public viewLogin() {
+	public viewLogin(String login, String senha) {
 		initialize();
+		this.login = login;
+		this.senha = senha;
 	}
 
 	/**
@@ -83,7 +88,7 @@ public class viewLogin {
 	}
 	
 	public boolean checkLogin(String login, String senha) {
-		return login.equals("terra") && senha.equals("2022"); //Opção de trocar de senha && criar uma nova variar em um varias...
+		return login.equals(login) && senha.equals(senha); //Opção de trocar de senha && criar uma nova variar em um varias...
 	}
 
 	public void setVisible(boolean b) {

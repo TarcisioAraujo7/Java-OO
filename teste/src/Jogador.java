@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class Jogador {
@@ -21,6 +24,22 @@ public class Jogador {
             JOptionPane.showMessageDialog(null, "Você não tem saldo suficiente!", "Solar",JOptionPane.ERROR_MESSAGE);
             return false;       
         }
+    }
+
+    public void setConquistas(List<Produto> produtoDisponiveis){
+        List<Conquista> obtidas = new ArrayList<Conquista>();
+        for (Produto produto : produtoDisponiveis) {
+            if (produto instanceof Jogo && produto.getPossui()) {
+                Jogo jogo = (Jogo) produto;
+                for (Conquista conquista : jogo.getConquistas()) {
+                    if (conquista.isObtida()) {
+                        obtidas.add(conquista);
+                    }
+                }
+            }
+        }
+
+        conquistas = obtidas.size();
     }
 
     public String getNome() {

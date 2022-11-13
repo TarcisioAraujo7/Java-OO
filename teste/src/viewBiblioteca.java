@@ -17,7 +17,8 @@ public class viewBiblioteca {
 
 	private JFrame frame;
 	private float saldo;
-	private JTextField textField;
+	private int conquistas;
+	private JTextField horasField;
 
 	
 	public viewBiblioteca() {
@@ -57,10 +58,12 @@ public class viewBiblioteca {
 		txtSaldo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtSaldo.setBounds(10, 186, 102, 14);
 		panel.add(txtSaldo);
-		
-		JLabel txtConquistas = new JLabel("CONQUISTAS:");
+
+		player.setConquistas(produtoDisponiveis);
+		conquistas = player.getConquistas();
+		JLabel txtConquistas = new JLabel(String.format("CONQUISTAS: %d", conquistas));
 		txtConquistas.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtConquistas.setBounds(10, 268, 77, 14);
+		txtConquistas.setBounds(10, 268, 102, 14);
 		panel.add(txtConquistas);
 		
 		JLabel txtJogos = new JLabel("JOGOS:");
@@ -74,7 +77,7 @@ public class viewBiblioteca {
 		btnvoltarLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnvoltarLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				viewLogin window = new viewLogin();
+				viewLogin window = new viewLogin("","");
 				window.getFrame().setVisible(true);
 				getFrame().setVisible(false);
 				
@@ -102,14 +105,11 @@ public class viewBiblioteca {
 		panel_4.add(txtTituloJogarHoras);
 		txtTituloJogarHoras.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		textField = new JTextField();
-		textField.setBounds(24, 32, 124, 20);
-		panel_4.add(textField);
-		textField.setColumns(10);
+		horasField = new JTextField();
+		horasField.setBounds(24, 32, 124, 20);
+		panel_4.add(horasField);
+		horasField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("JOGAR");
-		btnNewButton.setBounds(34, 68, 100, 23);
-		panel_4.add(btnNewButton);
 		
 		saldo = player.getSaldoTotal();
 
@@ -124,6 +124,7 @@ public class viewBiblioteca {
 				txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
 			}
 		});
+
 		getFrame().getContentPane().add(btnComprar);
 		
 		JPanel panel_2 = new JPanel();
@@ -179,6 +180,33 @@ public class viewBiblioteca {
 		txtTituloMeuJogos.setBounds(54, 11, 111, 14);
 		panel_1.add(txtTituloMeuJogos);
 		//comboBox.getSelectedIndex()
+
+		JButton btnJogar = new JButton("JOGAR");
+		btnJogar.setBounds(34, 68, 100, 23);
+		btnJogar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				for (Produto produto : produtoDisponiveis) {
+					if (produto instanceof Jogo) {
+						if (produto.toString().equals(comboBoxMeusJogos.getSelectedItem())) {
+							
+							Jogo jogoSelecionado = (Jogo) produto;
+
+							jogoSelecionado.Jogar(horasField.getText());
+
+							player.setConquistas(produtoDisponiveis);
+							conquistas = player.getConquistas();
+							txtConquistas.setText(String.format("CONQUISTAS: %d", conquistas));
+							break;
+					}
+					}
+					
+				}
+			}
+		});
+		panel_4.add(btnJogar);
+
+
 	}
 
 	public void setVisible(boolean b) {
