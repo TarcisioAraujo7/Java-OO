@@ -88,7 +88,7 @@ public class viewLogin {
 	}
 	
 	public boolean checkLogin(String login, String senha) {
-		return login.equals(login) && senha.equals(senha); //Opção de trocar de senha && criar uma nova variar em um varias...
+		return this.login.equals(login) && this.senha.equals(senha); 
 	}
 
 	public void setVisible(boolean b) {

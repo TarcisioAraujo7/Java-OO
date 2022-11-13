@@ -6,7 +6,7 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					viewLogin window = new viewLogin("terra","2022");
+					viewLogin window = new viewLogin("jupiter","2022");
 					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

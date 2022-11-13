@@ -32,6 +32,10 @@ public class Jogo extends Produto {
         
     }
 
+    public void exibirJogo(){
+        JOptionPane.showMessageDialog(null, "Descrição: " + descricao + "\nHoras jogadas: " + HorasJogadas, "Solar",JOptionPane.PLAIN_MESSAGE);
+    }
+
     public List<Conquista> getConquistas() {
         return conquistas;
     }
@@ -40,4 +44,10 @@ public class Jogo extends Produto {
         Conquista novaConquista = new Conquista(nome, descricao, progressoAObter);
         conquistas.add(novaConquista);
     }
+
+    public int getHorasJogadas() {
+        return HorasJogadas;
+    }
+
+    
 }

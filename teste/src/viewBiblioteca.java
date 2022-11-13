@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class viewBiblioteca {
+abstract class viewBiblioteca {
 
 	private JFrame frame;
 	private float saldo;
@@ -34,7 +35,7 @@ public class viewBiblioteca {
 		setFrame(new JFrame());
 		getFrame().getContentPane().setForeground(Color.WHITE);
 		getFrame().getContentPane().setBackground(Color.WHITE);
-		getFrame().setBounds(100, 100, 820, 500);
+		getFrame().setBounds(100, 100, 820, 500);  //1220
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
@@ -89,9 +90,9 @@ public class viewBiblioteca {
 		getFrame().getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("JOGO ATUAL");
+		JLabel lblNewLabel_2 = new JLabel("OVERVIEW");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(51, 11, 78, 14);
+		lblNewLabel_2.setBounds(56, 11, 130, 14);
 		panel_3.add(lblNewLabel_2);
 		
 		JPanel panel_4 = new JPanel();
@@ -181,12 +182,57 @@ public class viewBiblioteca {
 		});
 		
 		panel_2.add(btnComprarJogo);
+
+		JButton btnOverView = new JButton("EXIBIR");
+		btnOverView.setBackground(Color.YELLOW);
+		btnOverView.setBounds(36, 68, 99, 23);
+		btnOverView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JOptionPane.showMessageDialog(null, "Suas informações:\n- Conquistas: " + conquistas +
+				                                                                      "\n- Jogos comprados: " + jogosPossuidos +
+																					   String.format("\n- Media de conquistas por jogo: %.2f", mediaPorJogos(conquistas, jogosPossuidos)) +
+																					   String.format("\n- Media de horas por jogo: %.2f", mediaPorJogos(totalHorasJogadas(produtoDisponiveis), jogosPossuidos)), 
+																						"Solar",
+																							JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 		
-		JLabel txtTituloMeuJogos = new JLabel("MEUS JOGOS");
+		panel_3.add(btnOverView);
+		
+		JLabel txtTituloMeuJogos = new JLabel("SELECIONAR JOGO");
 		txtTituloMeuJogos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtTituloMeuJogos.setBounds(54, 11, 111, 14);
+		txtTituloMeuJogos.setBounds(36, 11, 111, 14);
 		panel_1.add(txtTituloMeuJogos);
-		//comboBox.getSelectedIndex()
+		
+		
+
+		JLabel txtInfoJogo = new JLabel("SELECIONAR JOGO");
+		txtInfoJogo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtInfoJogo.setBounds(36, 11, 111, 14);
+		panel_1.add(txtInfoJogo);
+
+		JButton btnInfo = new JButton("EXIBIR INFO");
+		btnInfo.setBounds(34, 68, 100, 23);
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				for (Produto produto : produtoDisponiveis) {
+					if (produto instanceof Jogo) {
+						if (produto.toString().equals(comboBoxMeusJogos.getSelectedItem())) {
+							
+							Jogo jogoSelecionado = (Jogo) produto;
+
+							jogoSelecionado.exibirJogo();
+							break;
+					}
+					}
+					
+				}
+			}
+		});
+		panel_1.add(btnInfo);
 
 		JButton btnJogar = new JButton("JOGAR");
 		btnJogar.setBounds(34, 68, 100, 23);
@@ -253,5 +299,28 @@ public class viewBiblioteca {
 		return jogos.size();
 	}
 
+	public float mediaPorJogos(int numero, int jogos){
+		float resultado;
+		try {
+			resultado = (float) numero / (float) jogos;
+			
+			return resultado;
+
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	public int totalHorasJogadas(List<Produto> produtos){
+		int total = 0;
+		for (Produto produto : produtos) {
+			if (produto instanceof Jogo) {
+				Jogo jogo = (Jogo) produto;
+				total += jogo.getHorasJogadas();
+			}
+		}
+
+		return total;
+	}
 	
 }
