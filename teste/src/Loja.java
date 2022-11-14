@@ -12,11 +12,9 @@ public class Loja {
         produtosDisponiveis = new ArrayList<Produto>();
     }
 
-    public void addJogo(Jogo jogo) {
-        produtosDisponiveis.add(jogo);
+    public void addProduto(Produto produto) {
+        produtosDisponiveis.add(produto);
     }
 
-    public void addAlbum(AlbumMusical albo) {
-        produtosDisponiveis.add(albo);
-    }
+    
 }

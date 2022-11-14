@@ -27,6 +27,7 @@ public class Produto {
     public void setPossui(Boolean possui) {
         this.possui = possui;
     }
+
     public Produto(String nome, String descricao, Float preco) {
         this.nome = nome;
         this.descricao = descricao;
@@ -40,6 +41,7 @@ public class Produto {
         this.possui = false;
         
     }
+    
     public float getPreco() {
         return preco;
     }
