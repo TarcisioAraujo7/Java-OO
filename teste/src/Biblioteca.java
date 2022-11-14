@@ -8,8 +8,8 @@ public class Biblioteca extends viewBiblioteca{
 
     // jogo atual
 
-    public Biblioteca(){
-        
+    public Biblioteca(String nome){
+        super(nome);
         sessaoAtual = new Sessao();
         loja = new Loja();
         setBiblioteca();
@@ -56,7 +56,7 @@ public class Biblioteca extends viewBiblioteca{
 
         loja.addJogo(deltarune);
         
-        AlbumMusical albumDoom = new AlbumMusical("Álbum Doom", "Album do jogo Doom", 30);
+        AlbumMusical albumDoom = new AlbumMusical("Álbum Doom", "Album do jogo Doom", 30, "https://www.youtube.com/watch?v=PM9VSVX7dx8&list=PLe0EamRrnC6Rb5F3njbg6eYYy09PNKEOv");
         albumDoom.setMusica("The Only Thing They Fear Is You");
         albumDoom.setMusica("BFG Division");
         albumDoom.setMusica("Metahook");
@@ -64,7 +64,7 @@ public class Biblioteca extends viewBiblioteca{
         loja.addAlbum(albumDoom);
 
 
-        AlbumMusical albumBloodborne = new AlbumMusical("Bloodborne Original Soundtrack", "Album do jogo Bloordborne", 30);
+        AlbumMusical albumBloodborne = new AlbumMusical("Bloodborne OST", "Album do jogo Bloordborne", 30, "https://www.youtube.com/watch?v=cKk6XqcmB4Q&list=PLKzg0DeoAjD-cGZOEspgvDGpFal8S2aS-");
         albumBloodborne.setMusica("Omen");
         albumBloodborne.setMusica("The Night Unfurls");
         albumBloodborne.setMusica("Hunter's Dream");
@@ -80,7 +80,7 @@ public class Biblioteca extends viewBiblioteca{
 
         loja.addAlbum(albumBloodborne);
 
-        AlbumMusical albumGhost = new AlbumMusical("Ghost of Tsushima Original Soundtrack", "Album do jogo Ghost Of Tsushima", 30);
+        AlbumMusical albumGhost = new AlbumMusical("Ghost of Tsushima OST", "Album do jogo Ghost Of Tsushima", 30, "https://www.youtube.com/watch?v=CIXoEJGZoJw&list=PLPfHaI9XqTnE6AD-dSRfCoDJNjPCIuQ7_");
         albumGhost.setMusica("The Way of the Ghost");
         albumGhost.setMusica("Jin Sakai");
         albumGhost.setMusica("Komoda Beach");
@@ -90,7 +90,7 @@ public class Biblioteca extends viewBiblioteca{
 
         loja.addAlbum(albumGhost);
 
-        AlbumMusical albumUndertale = new AlbumMusical("Undertale Soundtrack", "Album do Undertale", 30);
+        AlbumMusical albumUndertale = new AlbumMusical("Undertale OST", "Album do Undertale", 30, "https://www.youtube.com/watch?v=s7RRgF5Ve_E&list=PLpJl5XaLHtLX-pDk4kctGxtF4nq6BIyjg");
         albumUndertale.setMusica("Once Upon a Time");
         albumUndertale.setMusica("Start Menu");
         albumUndertale.setMusica("Your Best Friend");

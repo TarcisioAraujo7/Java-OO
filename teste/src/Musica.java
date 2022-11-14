@@ -4,4 +4,11 @@ public class Musica {
     public Musica(String nome){
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return "Musica: " + nome;
+    }
+
+    
 }

@@ -16,10 +16,10 @@ public class Jogador {
         this.nome = nome;
     }
 
-    public boolean comprarJogo(Jogo jogo){
-        if (saldoTotal >= jogo.getPreco()) {
-            jogo.setPossui(true);
-            saldoTotal -= jogo.getPreco();
+    public boolean comprarJogo(Produto produto){
+        if (saldoTotal >= produto.getPreco()) {
+            produto.setPossui(true);
+            saldoTotal -= produto.getPreco();
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Você não tem saldo suficiente!", "Solar",JOptionPane.ERROR_MESSAGE);

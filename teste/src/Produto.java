@@ -1,6 +1,6 @@
 public class Produto {
     
-    private String nome;
+    protected String nome;
     protected String descricao;
     private Boolean possui;
     final private float preco;

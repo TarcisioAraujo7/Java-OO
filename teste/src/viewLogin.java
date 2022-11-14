@@ -70,7 +70,7 @@ public class viewLogin {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(checkLogin(interactiveLogin.getText(), new String(((JPasswordField) interactiveSenha).getPassword()))) {
-					Biblioteca window = new Biblioteca();
+					Biblioteca window = new Biblioteca(login);
 					window.getFrame().setVisible(true);
 					getFrame().setVisible(false);
 				}else {

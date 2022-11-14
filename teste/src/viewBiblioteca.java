@@ -22,10 +22,10 @@ abstract class viewBiblioteca {
 	private int conquistas;
 	private int jogosPossuidos;
 	private JTextField horasField;
-
+	private String nome;
 	
-	public viewBiblioteca() {
-
+	public viewBiblioteca(String nome) {
+		this.nome = nome;
 	}
 
 	/**
@@ -35,7 +35,7 @@ abstract class viewBiblioteca {
 		setFrame(new JFrame());
 		getFrame().getContentPane().setForeground(Color.WHITE);
 		getFrame().getContentPane().setBackground(Color.WHITE);
-		getFrame().setBounds(100, 100, 820, 500);  //1220
+		getFrame().setBounds(100, 100, 1000, 500);  //1220
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
@@ -45,7 +45,7 @@ abstract class viewBiblioteca {
 		getFrame().getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Usuario1");
+		JLabel lblNewLabel = new JLabel(nome);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(71, 123, 111, 20);
 		panel.add(lblNewLabel);
@@ -90,13 +90,13 @@ abstract class viewBiblioteca {
 		getFrame().getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("OVERVIEW");
+		JLabel lblNewLabel_2 = new JLabel("JOGO ATUAL");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(56, 11, 130, 14);
+		lblNewLabel_2.setBounds(50, 11, 130, 14);
 		panel_3.add(lblNewLabel_2);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(555, 209, 175, 147);
+		panel_4.setBounds(536, 209, 175, 147);
 		getFrame().getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 		
@@ -114,7 +114,7 @@ abstract class viewBiblioteca {
 		saldo = player.getSaldoTotal();
 
 		JButton btnComprar = new JButton("+ COMPRAR SALDO");
-		btnComprar.setBounds(570, 399, 160, 29);
+		btnComprar.setBounds(784, 399, 160, 29);
 		btnComprar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnComprar.setBackground(Color.GREEN);
 		txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
@@ -128,7 +128,7 @@ abstract class viewBiblioteca {
 		getFrame().getContentPane().add(btnComprar);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(555, 26, 175, 147);
+		panel_2.setBounds(536, 26, 175, 147);
 		getFrame().getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -183,9 +183,9 @@ abstract class viewBiblioteca {
 		
 		panel_2.add(btnComprarJogo);
 
-		JButton btnOverView = new JButton("EXIBIR");
+		JButton btnOverView = new JButton("EXIBIR OVERVIEW");
 		btnOverView.setBackground(Color.YELLOW);
-		btnOverView.setBounds(36, 68, 99, 23);
+		btnOverView.setBounds(24, 300, 150, 23);
 		btnOverView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -199,7 +199,7 @@ abstract class viewBiblioteca {
 			}
 		});
 		
-		panel_3.add(btnOverView);
+		panel.add(btnOverView);
 		
 		JLabel txtTituloMeuJogos = new JLabel("SELECIONAR JOGO");
 		txtTituloMeuJogos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -232,7 +232,8 @@ abstract class viewBiblioteca {
 				}
 			}
 		});
-		panel_1.add(btnInfo);
+		panel_3.add(btnInfo);
+
 
 		JButton btnJogar = new JButton("JOGAR");
 		btnJogar.setBounds(34, 68, 100, 23);
@@ -259,7 +260,111 @@ abstract class viewBiblioteca {
 		});
 		panel_4.add(btnJogar);
 
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(782, 26, 175, 147);
+		frame.getContentPane().add(panel_5);
+		panel_5.setLayout(null);
 
+		JLabel txtTituloCompraAlbum = new JLabel("COMPRAR ÁLBUM");
+		txtTituloCompraAlbum.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtTituloCompraAlbum.setBounds(41, 11, 98, 14);
+		panel_5.add(txtTituloCompraAlbum);
+
+		JComboBox<String> comboBoxComprarAlbum = addAlbuns(produtoDisponiveis, false);
+		comboBoxComprarAlbum.setBounds(10, 36, 155, 22);
+		panel_5.add(comboBoxComprarAlbum);
+
+
+		
+		JButton btnComprarAlbum = new JButton("COMPRAR");
+		btnComprarAlbum.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnComprarAlbum.setBounds(41, 75, 98, 23);
+		
+		panel_5.add(btnComprarAlbum);
+
+		JPanel panel_6 = new JPanel();
+		panel_6.setBounds(782, 209, 175, 147);
+		frame.getContentPane().add(panel_6);
+		panel_6.setLayout(null);
+		
+		JLabel txtTituloOuvirAlbum = new JLabel("OUVIR ÁLBUM");
+		txtTituloOuvirAlbum.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtTituloOuvirAlbum.setBounds(48, 11, 86, 14);
+		panel_6.add(txtTituloOuvirAlbum);
+		
+		JComboBox<String> comboBoxOuvirAlbum = addAlbuns(produtoDisponiveis, true);
+		comboBoxOuvirAlbum.setBounds(10, 35, 155, 22);
+		panel_6.add(comboBoxOuvirAlbum);
+
+		btnComprarAlbum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				for (Produto produto : produtoDisponiveis) {
+
+					if (produto instanceof AlbumMusical) {
+						if (produto.toString().equals(comboBoxComprarAlbum.getSelectedItem()) && player.comprarJogo((AlbumMusical) produto)) {
+							
+							comboBoxOuvirAlbum.addItem(produto.toString());
+							comboBoxComprarAlbum.removeItem(comboBoxComprarAlbum.getSelectedItem());
+							saldo = player.getSaldoTotal();
+							txtSaldo.setText(String.format("SALDO:  %.2f", saldo));
+							break;
+					}
+					}
+					
+				}
+				
+			}
+		});
+
+		JButton btnExibirMusicas = new JButton("EXIBIR MÚSICAS");
+		btnExibirMusicas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (Produto produto : produtoDisponiveis) {
+
+					if (produto instanceof AlbumMusical) {
+						if (produto.toString().equals(comboBoxOuvirAlbum.getSelectedItem())) {
+							
+							AlbumMusical album = (AlbumMusical) produto;
+
+							album.exibirAlbum();
+
+							break;
+					}
+					}
+					
+				}
+				
+			}
+		});
+		btnExibirMusicas.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnExibirMusicas.setBounds(20, 68, 133, 23);
+		panel_6.add(btnExibirMusicas);
+		
+		JButton btnOuvir = new JButton("OUVIR");
+		btnOuvir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnOuvir.setBounds(45, 102, 89, 23);
+
+		btnOuvir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				for (Produto produto : produtoDisponiveis) {
+
+					if (produto instanceof AlbumMusical) {
+						if (produto.toString().equals(comboBoxOuvirAlbum.getSelectedItem())) {
+							
+							AlbumMusical album = (AlbumMusical) produto;
+							album.ouvirAlbum();
+							break;
+					}
+					}
+					
+				}
+				
+			}
+		});
+		panel_6.add(btnOuvir);
+		
 	}
 
 	public void setVisible(boolean b) {
@@ -281,6 +386,19 @@ abstract class viewBiblioteca {
 
 		for (Produto produto : produtoDisponiveis) {
 			if (produto instanceof Jogo && produto.getPossui() == possui) {
+				comboBoxComprar.addItem(produto.toString());
+			}
+		}
+		
+		return comboBoxComprar;
+	}
+
+	public JComboBox<String> addAlbuns(List<Produto> produtoDisponiveis, boolean possui){
+		JComboBox<String> comboBoxComprar = new JComboBox<String>();
+		comboBoxComprar.setBounds(10, 33, 155, 22);
+
+		for (Produto produto : produtoDisponiveis) {
+			if (produto instanceof AlbumMusical && produto.getPossui() == possui) {
 				comboBoxComprar.addItem(produto.toString());
 			}
 		}
