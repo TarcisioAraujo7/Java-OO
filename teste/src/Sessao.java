@@ -6,7 +6,7 @@ public class Sessao {
 
 
     public Sessao() {
-        this.playerLogado = new Jogador("Terra");
+        this.playerLogado = new Jogador("");
     }
 
     public Jogo getJogoAtual() {
